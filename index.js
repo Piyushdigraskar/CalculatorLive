@@ -99,6 +99,7 @@ function toggleSign() {
        }
    }
 
+
 function calculate() {
        if (currentOperator === null || shouldResetDisplay) return;
 
