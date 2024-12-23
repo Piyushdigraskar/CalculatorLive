@@ -69,6 +69,9 @@ buttons.forEach((button) => {
               else if (value === '=') {
                      calculate(); // Perform the calculation
                  }
+                 else if(value === "+/-"){
+                     toggleSign();
+                 }
        })
 })
 
@@ -86,6 +89,15 @@ function resetDisplay() {
        display.textContent = '';
        shouldResetDisplay = false;
 }
+function toggleSign() {
+       const currentValue = display.textContent;
+       if(currentValue === 0) return;
+       if(currentValue.startsWith('-')){
+              display.textContent = currentValue.slice(1);
+       }else{
+              display.textContent = `-${currentValue}`;
+       }
+   }
 
 function calculate() {
        if (currentOperator === null || shouldResetDisplay) return;
