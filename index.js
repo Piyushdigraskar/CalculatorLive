@@ -14,6 +14,16 @@ function addToDisplay(value){
        }
 }
 
+buttons.forEach((button)=>{
+       button.addEventListener('click', ()=>{
+              const value = button.textContent;
+              if(!isNaN(value)){
+                     addToDisplay(value);
+              }else if(value === "AC"){
+                     clearDisplay();
+              }
+       })
+})
 
 
 function add(a, b){
