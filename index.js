@@ -77,8 +77,8 @@ buttons.forEach((button) => {
 
 
 function setOperator(operator) {
-       if (currentOperator !== null) {
-              //calculate() //yet to make
+       if (currentOperator !== null&& !shouldResetDisplay) {
+              calculate();
        }
        firstValue = display.textContent;
        currentOperator = operator;
