@@ -5,26 +5,26 @@ let firstValue = '';
 let currentOperator = null;
 let shouldResetDisplay = false;
 
-function add(a, b){
+function add(a, b) {
        return a + b;
 }
 
-function subtract(a, b){
+function subtract(a, b) {
        return a - b
 }
-function multiply(a, b){
+function multiply(a, b) {
        return a * b;
 }
-function divide(a, b){
-       if(b === 0) {
+function divide(a, b) {
+       if (b === 0) {
               alert("Cannot divide by 0");
               return;
        }
-       return a/b;
+       return a / b;
 }
 
-function operate(operator, a, b){
-       switch(operator){
+function operate(operator, a, b) {
+       switch (operator) {
               case '+':
                      return add(a, b);
               case '-':
@@ -38,33 +38,40 @@ function operate(operator, a, b){
        }
 }
 
-function clearDisplay () {
+function clearDisplay() {
        display.textContent = "0";
+       firstValue = '';
+       currentOperator = null;
+       shouldResetDisplay = false;
 }
 
-function addToDisplay(value){
-       if(display.textContent === "0"){
+function addToDisplay(value) {
+       if (display.textContent === "0") {
               display.textContent = value;
        }
-       else{
+       else {
               display.textContent += value;
        }
 }
 
-buttons.forEach((button)=>{
-       button.addEventListener('click', ()=>{
+buttons.forEach((button) => {
+       button.addEventListener('click', () => {
               const value = button.textContent;
-              if(!isNaN(value)){
+              if (!isNaN(value)) {
+                     if (shouldResetDisplay) resetDisplay();
                      addToDisplay(value);
-              }else if(value === "AC"){
+              } else if (value === "AC") {
                      clearDisplay();
+              } else if (['+', '-', '*', '/'].includes(value)) {
+                     // Handle operators
+                     setOperator(value);
               }
        })
 })
 
 
-function setOperator(operator){
-       if(currentOperator !== null){
+function setOperator(operator) {
+       if (currentOperator !== null) {
               //calculate() //yet to make
        }
        firstValue = display.textContent;
@@ -72,9 +79,9 @@ function setOperator(operator){
        shouldResetDisplay = true;
 }
 
-function resetDisplay(){
+function resetDisplay() {
        display.textContent = '';
-    shouldResetDisplay = false;
+       shouldResetDisplay = false;
 }
 
 
