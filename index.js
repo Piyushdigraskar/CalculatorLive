@@ -66,6 +66,9 @@ buttons.forEach((button) => {
                      // Handle operators
                      setOperator(value);
               }
+              else if (value === '=') {
+                     calculate(); // Perform the calculation
+                 }
        })
 })
 
@@ -84,5 +87,21 @@ function resetDisplay() {
        shouldResetDisplay = false;
 }
 
+function calculate() {
+       if (currentOperator === null || shouldResetDisplay) return;
 
-
+       const secondValue = display.textContent;
+       if (currentOperator === '/' && secondValue === '0') {
+              alert("Cannot divide by zero!");
+              clearDisplay(); // Reset the calculator
+              return;
+       }
+       const result = operate(
+              currentOperator,
+              parseFloat(firstValue),
+              parseFloat(secondValue)
+          );
+       display.textContent = result;
+       firstValue = result;
+       currentOperator = null;
+}
